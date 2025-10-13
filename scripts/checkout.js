@@ -1,6 +1,6 @@
-import {cart, removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js';
-import { formatMoney} from './utils/money.js';
+import {cart, removeFromCart} from '../data/cart.js';
+import {formatMoney} from './utils/money.js';
 
 let cartSummaryHTML ='';
 
@@ -40,7 +40,7 @@ cart.forEach((cartItem) => {
             <span class="update-quantity-link link-primary">
               Update
             </span>
-            <span class="delete-quantity-link link-primary js-delete-link" data-product-id = "${matchingProduct.id}">
+            <span class="delete-quantity-link link-primary js-delete-link" data-product-id = "${productId}">
               Delete
             </span>
           </div>
