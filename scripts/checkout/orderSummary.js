@@ -25,6 +25,7 @@ cart.forEach((cartItem) => {
 
  cartSummaryHTML += `
    <div class="cart-item-container 
+   js-cart-item-container
    js-cart-item-${matchingProduct.id}">
       <div class="delivery-date">
         Delivery date: ${dateString}
@@ -38,17 +39,20 @@ cart.forEach((cartItem) => {
           <div class="product-name">
             ${matchingProduct.name}
           </div>
-          <div class="product-price">
+          <div class="product-price"> 
             $${formatMoney(matchingProduct.priceCents)}
           </div>
-          <div class="product-quantity">
+          <div class="product-quantity  
+          js-product-quantity-${matchingProduct.id}">
             <span>
               Quantity: <span class="quantity-label">${cartItem.quantity}</span>
             </span>
             <span class="update-quantity-link link-primary">
               Update
             </span>
-            <span class="delete-quantity-link link-primary js-delete-link" data-product-id = "${productId}">
+            <span class="delete-quantity-link link-primary js-delete-link 
+              js-delete-link-${matchingProduct.id}" 
+              data-product-id = "${productId}">
               Delete
             </span>
           </div>
@@ -102,18 +106,6 @@ function deliveryOptionsHTML(matchingProduct,cartItem){
 }
 
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
- 
-updateCheckout();
-function updateCheckout(){
- 
-    let checkOut = 0;
-    cart.forEach((cartItem) => {
-      checkOut += cartItem.quantity;
-    });
-    
-    document.querySelector('.js-checkout')
-      .innerHTML = `${checkOut} items`;
-  }
 
 document.querySelectorAll('.js-delete-link')
 .forEach((link) => {
@@ -125,7 +117,6 @@ document.querySelectorAll('.js-delete-link')
     (`.js-cart-item-${productId}`);
     container.remove();
 
-    updateCheckout();
     renderPaymentSummary();
   });
 });
