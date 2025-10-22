@@ -15,7 +15,7 @@ async function loadPage(){
         //throw 'error';
         loadCart(() => {
         //reject('error');
-          resolve();
+         resolve();
       });
   });
 
