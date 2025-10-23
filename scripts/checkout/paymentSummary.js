@@ -26,7 +26,7 @@ export function renderPaymentSummary(){
       </div>
 
       <div class="payment-summary-row">
-        <div>Items (3):</div>
+        <div>Items (${updateCart()}):</div>
         <div class="payment-summary-money">$
         ${formatMoney(productPriceCents)}</div>
       </div>
@@ -78,11 +78,21 @@ export function renderPaymentSummary(){
 
     const order = await response.json();
     addOrder(order);
+    console.log(order);
 
   } catch(error){
      console.log('Unexpected error.please try again later.');
   }
 
-   window.location.href = 'orders.html';
+    window.location.href = 'orders.html';
    });
+
+function updateCart(){
+  
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+  return cartQuantity;
+}
 }
