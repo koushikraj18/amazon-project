@@ -3,7 +3,9 @@ import {orders} from '../data/orders.js';
 import {formatMoney} from './utils/money.js';
 import {cart, addTOCart} from '../data/cart.js';
 
-function renderOrders(){
+async function renderOrders(){
+ 
+  await loadProductsFetch();
 
   let orderItemHTML ='';
 
@@ -84,7 +86,7 @@ function orderProducts(orderItem){
         </div>
 
         <div class="product-actions">
-          <a href="tracking.html">
+          <a href="tracking.html?orderId=${orderItem.id}&productId=${productId}">
             <button class="track-package-button button-secondary js-track-package">
               Track package
             </button>
@@ -95,7 +97,7 @@ function orderProducts(orderItem){
  
   return productHTML;
  }
-
+ 
 
  document.querySelector('.js-orders-grid').innerHTML = orderItemHTML;
 
@@ -116,16 +118,9 @@ function orderProducts(orderItem){
       }, 1000);
     });
   });
-
-  document.querySelectorAll('.js-track-package').forEach((button) => {
-    button.addEventListener('click', () => {
-
-    });
-  });
 }
-loadProductsFetch().then(() =>{
-  renderOrders();
-});
+renderOrders();
+
 function updateCart(){
   
   let cartQuantity = 0;
