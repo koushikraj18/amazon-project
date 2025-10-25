@@ -84,6 +84,11 @@ export function updateQuantity(productId, newQuantity) {
     saveToStorage();
   }
 
+export function resetCart() {
+  cart = [];
+  saveToStorage();
+}
+
   export function loadCart(fun){
     
   const xhr = new XMLHttpRequest();
