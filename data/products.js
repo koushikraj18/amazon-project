@@ -58,6 +58,25 @@ class Clothing extends Product{
   }
 }
 
+class Appliance extends Product{
+   instructions;
+   warranty;
+   
+   constructor(productDetails){
+    super(productDetails);
+    this.instructions = productDetails.instructions;
+    this.warranty = productDetails.warranty;
+   }
+
+   extraInfoHtml(){
+    return `
+      <a href="${this.instructions}" target="_blank">
+        instructions
+      </a>
+    `;
+  }
+}
+
 export let products = [];
 
 export function loadProductsFetch(){
@@ -69,6 +88,9 @@ export function loadProductsFetch(){
       products = productData.map((productDetails) => {
       if(productDetails.type === 'clothing'){
         return new Clothing(productDetails);
+      }
+      if(productDetails.type === 'appliance'){
+        return new Appliance(productDetails);
       }
       return new Product(productDetails);
     });
