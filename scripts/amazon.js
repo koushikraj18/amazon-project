@@ -2,11 +2,9 @@ import {products, loadProductsFetch} from '../data/products.js';
 import {cart, addTOCart} from '../data/cart.js';
 import {formatMoney} from './utils/money.js';
 
-loadProductsFetch().then(() => {
-  renderProducts();
-});
+async function renderProducts() {
 
-function renderProducts() {
+  await loadProductsFetch();
 
   let productsHTML ='';
 
@@ -92,3 +90,4 @@ function renderProducts() {
         });
       });
   }
+  renderProducts();
